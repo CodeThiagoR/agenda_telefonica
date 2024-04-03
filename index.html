@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agenda de Contatos</title>
     <link rel="stylesheet" href="main.css">
+    <link rel="shortcut icon" href="image/notebook.png" type="image/x-icon">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,34 +21,27 @@
                 AGENDA DE CONTATOS
             </h1>
         </header>
-        <form id="form-atividade">
-            <input id="nome-contato" type="text" required placeholder="Nome do contato"/>
-            <input id="num-fone" type="number" required placeholder="número de telefone" min="0" max="10"/>
-            <button type="submit">Adicionar +</button>
+        <form id="form-agenda">
+            <input id="nome-agenda" type="text" required placeholder="Nome do contato" minlength="2"/>
+            <input id="fone-agenda" type="tel" required placeholder="Telefone" minlength="6" maxlength="13"/>
+            <button type="submit">Cadastrar</button>
         </form>
         <table cellspacing="0">
             <thead>
                 <tr>
                     <th>
-                        Nome da atividade
+                        Nome 
                     </th>
                     <th>
-                        Nota da atividade
+                        Telefone
                     </th>
                     <th>
-                        Aprovado?
+                        Status
                     </th>
                 </tr>
             </thead>
             <tbody>
             </tbody>
-            <tfoot>
-                <tr>
-                    <td>Média Final</td>
-                    <td id="media-final-valor">---</td>
-                    <td id="media-final-resultado">---</td>
-                </tr>
-            </tfoot>
         </table>
     </div>
     <script src="main.js"></script>

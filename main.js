@@ -1,65 +1,35 @@
-const form = document.getElementById('form-atividade') 
-const imgAprovado = '<img src="./images/aprovado.png" alt="Emoji celebrando" />';
-const imgReprovado = '<img src="./images/reprovado.png" alt="Emoji decepcionado" />';
-const atividades = [];
-const notas = [];
-const spanAprovado = '<span class="resultado aprovado">Aprovado</span>';
-const spanReprovado = '<span class="resultado reprovado">Reprovado</span>';
-const notaMinima = parseFloat(prompt("Digite a nota mínima: "));
+const form = document.getElementById('form-agenda');
+const imgCheck = '<img src="./image/check.png" alt="Emoji checked" />';
+const imgWarning = '<img src="./image/warning.png" alt="Emoji checked" />';
+const agenda = [];
 
 
 let linhas = '';
 
-form.addEventListener('submit', function(e) {
+form.addEventListener('submit', function(e){
     e.preventDefault();
 
-    adicionaLinha();
-    atualizaTabela();
-    atualizaMediaFinal();
+    const inputNomeAgenda = document.getElementById('nome-agenda');
+    const inputFoneAgenda = document.getElementById('fone-agenda');
 
-});
+    if (agenda.includes(inputFoneAgenda.value)){
+        alert(`Esse número de telefone: ${inputFoneAgenda.value} já foi inserido`)
+    } else {
+        agenda.push(inputFoneAgenda.value);
 
-function adicionaLinha() {
-    const inputNomeAtividade = document.getElementById('nome-contato');
-    const inputNotaAtividade = document.getElementById('num-fone');
-
-    if (atividades.includes(inputNomeAtividade.value)) {
-        alert(`A atividade ${inputNomeAtividade.value} já foi inserida`);
-    } else  {
-        atividades.push(inputNomeAtividade.value);
-        notas.push(parseFloat(inputNotaAtividade.value));
-    
-        let linha = '<tr>'
-        linha += `<td>${inputNomeAtividade.value}</td>`;
-        linha += `<td>${inputNotaAtividade.value}</td>`;
-        linha += `<td>${inputNotaAtividade.value >= notaMinima ? imgAprovado : imgReprovado}<td>`;
+        let linha = '<tr>';
+        linha += `<td>${inputNomeAgenda.value}</td>`;
+        linha += `<td>${inputFoneAgenda.value}</td>`;
+        linha += `<td>${inputFoneAgenda.value >=100000 ? imgCheck : imgWarning}</td>`;
         linha += `</tr>`;
     
         linhas += linha;
     }
 
-    inputNomeAtividade.value = '';
-    inputNotaAtividade.value = '';
-}
-
-function atualizaTabela() {
     const corpoTabela = document.querySelector('tbody');
     corpoTabela.innerHTML = linhas;
-}
 
-function atualizaMediaFinal() {
-    const mediaFinal = calculaMediaFinal();
+    inputNomeAgenda.value = '';
+    inputFoneAgenda.value = '';
 
-    document.getElementById('media-final-valor').innerHTML = mediaFinal;
-    document.getElementById('media-final-resultado').innerHTML = mediaFinal >= notaMinima ? spanAprovado : spanReprovado;
-}
-/*
-function calculaMediaFinal() {
-    let somaDasNotas = 0;
-
-    for (let i = 0; i < notas.length; i++) {
-        somaDasNotas += notas[i];
-    }
-
-    return somaDasNotas / notas.length;
-}
+})
